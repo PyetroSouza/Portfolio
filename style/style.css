@@ -1,0 +1,642 @@
+:root {
+    --cor-fundo: #0f0f13;
+    --cor-card: #1a1a22;
+    --cor-borda: #2a2a38;
+    --cor-destaque: #6c63ff;
+    --cor-texto: #e2e2e8;
+    --cor-texto-fraco: #7a7a90;
+    --raio: 12px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* =============================================
+      UTILITÁRIOS
+   ============================================= */
+
+/* Rótulo colorido antes do título da seção */
+.rotulo {
+    display: inline-block;
+    background-color: rgba(108, 99, 255, 0.12);
+    color: var(--cor-destaque);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    border: 1px solid rgba(108, 99, 255, 0.25);
+    margin-bottom: 0.8rem;
+}
+
+/* Título principal de cada seção */
+.titulo-secao {
+    font-size: clamp(2.0rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* Subtítulo/descrição abaixo do título */
+.subtitulo-secao {
+    color: var(--cor-texto-fraco);
+    font-size: 1.0rem;
+    margin-bottom: 2.0rem;
+    text-align: center;
+}
+
+/* Linha divisória roxa */
+.linha {
+    width: 390px;
+    height: 3px;
+    background-color: var(--cor-destaque);
+    border-radius: 99px;
+    margin: 0 auto 2.5rem auto;
+    margin-bottom: 2.5rem;
+}
+
+/* Espaçamento padrão das seções */
+section {
+    padding: 5rem 8vw;
+}
+
+/* Seções com fundo levemente diferente (alternado) */
+section.fundo-alt {
+    background-color: #13131a;
+}
+
+/* =============================================
+      HEADER — apresentação principal
+   ============================================= */
+header {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 5rem 8vw;
+
+}
+
+/* Círculo decorativo no canto superior direito */
+header::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(108, 99, 255, 0.15) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    pointer-events: none;
+}
+
+.header-conteudo {
+    position: relative;
+    max-width: 600px;
+}
+
+/* Tag "Disponível para aprender" */
+.header-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(108, 99, 255, 0.1);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    color: #a09af0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.3rem 0.85rem;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+}
+
+/* Bolinha pulsando na tag */
+.bolinha {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--cor-destaque);
+    animation: pulsar 2s infinite;
+}
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* Nome em destaque */
+.header-nome {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 0.6rem;
+    color: var(--cor-texto);
+}
+
+/* Área/função em roxo */
+.header-area {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600;
+    color: var(--cor-destaque);
+    margin-bottom: 1.2rem;
+}
+
+/* Descrição curta */
+.header-descricao {
+    color: var(--cor-texto-fraco);
+    font-size: 1rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+/* Botões do header */
+.header-botoes {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.botao-primario {
+    background-color: var(--cor-destaque);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 99px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.botao-primario:hover {
+    background-color: #5a52e0;
+    transform: translateY(-1px);
+}
+
+.botao-secundario {
+    background-color: transparent;
+    color: var(--cor-texto);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 99px;
+    text-decoration: none;
+    border: 1px solid var(--cor-borda);
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.botao-secundario:hover {
+    border-color: var(--cor-destaque);
+    transform: translateY(-1px);
+}
+
+.img-profile {
+    max-width: 380px;  
+    flex-shrink: 0;
+}
+
+.img-profile img {
+    width: 100%;
+    height: 340px;     
+    object-fit: cover;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+
+/* =============================================
+      SEÇÃO 1 — HABILIDADES
+   ============================================= */
+
+/* Grupo de habilidades (Front-end, Ferramentas etc) */
+
+.grupo-habilidades {
+    margin-bottom: 2rem;
+}
+
+.grupo-titulo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cor-texto-fraco);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.85rem;
+    text-align: center;
+}
+
+/* Container das chips */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+}
+
+/* Chip individual de cada tecnologia */
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.chip:hover {
+    border-color: var(--cor-destaque);
+    transform: translateY(-2px);
+}
+
+/* Bolinha colorida na frente da chip */
+.chip-cor {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.laranja {
+    background-color: #f97316;
+}
+
+.azul {
+    background-color: #60a5fa;
+}
+
+.amarelo {
+    background-color: #facc15;
+}
+
+.roxo {
+    background-color: var(--cor-destaque);
+}
+
+.verde {
+    background-color: #4ade80;
+}
+
+.cinza {
+    background-color: #94a3b8;
+}
+
+/* =============================================
+      SEÇÃO 2 — PROJETOS
+   ============================================= */
+
+/* Grade de cards de projeto */
+
+.grade-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.2rem;
+    align-items: center;
+}
+
+/* Card de projeto */
+.card-projeto {
+    background-color: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.card-projeto:hover {
+    transform: translateY(-4px);
+    border-color: rgba(108, 99, 255, 0.4);
+}
+
+/* Área da imagem/screenshot do projeto */
+.projeto-imagem {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.08), rgba(108, 99, 255, 0.03));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-texto-fraco);
+    font-size: 0.8rem;
+    overflow: hidden;
+}
+
+.projeto-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Conteúdo do card */
+.projeto-corpo {
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Tipo do projeto (Site, Exercício etc) */
+.projeto-tipo {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cor-destaque);
+    margin-bottom: 0.4rem;
+}
+
+.projeto-titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.projeto-descricao {
+    color: var(--cor-texto-fraco);
+    font-size: 0.87rem;
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+/* Tags de tecnologia usadas */
+.projeto-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+}
+
+.projeto-tag {
+    background-color: rgba(108, 99, 255, 0.1);
+    color: #a09af0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+}
+
+/* Links do projeto */
+.projeto-links {
+    display: flex;
+    gap: 0.55rem;
+}
+
+.projeto-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--cor-destaque);
+    border: 1px solid var(--cor-borda);
+    padding: 0.3rem 0.7rem;
+    border-radius: 7px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.projeto-link:hover {
+    background-color: rgba(108, 99, 255, 0.1);
+    border-color: var(--cor-destaque);
+}
+
+/* =============================================
+      SEÇÃO 3 — FORMAÇÃO E CURSOS
+   ============================================= */
+
+/* Grade de 2 colunas para formação e cursos */
+.grade-formacao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+/* Título de cada coluna */
+.coluna-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.coluna-icone {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: rgba(108, 99, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+/* Lista de itens da formação */
+.lista-formacao {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Card de formação/curso */
+.item-formacao {
+    background-color: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1rem 1.1rem;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.item-formacao:hover {
+    border-color: rgba(108, 99, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+.item-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.item-titulo {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Badge com o período/ano */
+.item-periodo {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--cor-destaque);
+    background-color: rgba(108, 99, 255, 0.1);
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.item-instituicao {
+    color: var(--cor-texto-fraco);
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.item-descricao {
+    color: var(--cor-texto-fraco);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+/* =============================================
+      FOOTER — contato
+   ============================================= */
+footer {
+    background-color: var(--cor-card);
+    border-top: 1px solid var(--cor-borda);
+    padding: 3.5rem 8vw;
+}
+
+.footer-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-nome {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--cor-texto);
+}
+
+.footer-frase {
+    color: var(--cor-texto-fraco);
+    font-size: 0.88rem;
+    margin-top: 0.2rem;
+}
+
+/* Links de contato no footer */
+.footer-contatos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.footer-contato-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--cor-texto);
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: border-color 0.2s, transform 0.15s;
+}
+
+.footer-contato-item:hover {
+    border-color: var(--cor-destaque);
+    transform: translateX(3px);
+}
+
+.footer-contato-label {
+    font-size: 0.7rem;
+    color: var(--cor-texto-fraco);
+    line-height: 1;
+}
+
+.footer-contato-valor {
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.footer-rodape {
+    border-top: 1px solid var(--cor-borda);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: var(--cor-texto-fraco);
+    font-size: 0.78rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-nav a {
+    color: var(--cor-texto-fraco);
+    text-decoration: none;
+    font-size: 0.78rem;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: var(--cor-destaque);
+}
+
+/* =============================================
+      RESPONSIVO — celular
+   ============================================= */
+@media (max-width: 700px) {
+    section {
+        padding: 3.5rem 5vw;
+    }
+
+    header {
+        padding: 4rem 5vw;
+        min-height: auto;
+        padding-top: 5rem;
+    }
+
+    .grade-formacao {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-topo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
