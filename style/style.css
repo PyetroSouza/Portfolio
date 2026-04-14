@@ -13,18 +13,15 @@ html {
 }
 
 body {
+    width: 100%;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.7;
+    overflow-x: hidden;
 }
 
-/* =============================================
-      UTILITÁRIOS
-   ============================================= */
-
-/* Rótulo colorido antes do título da seção */
 .rotulo {
     display: inline-block;
     background-color: rgba(108, 99, 255, 0.12);
@@ -39,7 +36,6 @@ body {
     margin-bottom: 0.8rem;
 }
 
-/* Título principal de cada seção */
 .titulo-secao {
     font-size: clamp(2.0rem, 4vw, 2.5rem);
     font-weight: 800;
@@ -48,7 +44,6 @@ body {
     text-align: center;
 }
 
-/* Subtítulo/descrição abaixo do título */
 .subtitulo-secao {
     color: var(--cor-texto-fraco);
     font-size: 1.0rem;
@@ -56,40 +51,33 @@ body {
     text-align: center;
 }
 
-/* Linha divisória roxa */
 .linha {
-    width: 390px;
+    width: min(530px, 90%);
     height: 3px;
     background-color: var(--cor-destaque);
     border-radius: 99px;
     margin: 0 auto 2.5rem auto;
-    margin-bottom: 2.5rem;
 }
 
-/* Espaçamento padrão das seções */
 section {
     padding: 5rem 8vw;
 }
 
-/* Seções com fundo levemente diferente (alternado) */
 section.fundo-alt {
     background-color: #13131a;
 }
 
-/* =============================================
-      HEADER — apresentação principal
-   ============================================= */
 header {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    gap: 2rem;
     justify-content: space-between;
-    gap: 1.5rem;
+    flex-wrap: wrap;
     padding: 5rem 8vw;
-
+    position: relative;
 }
 
-/* Círculo decorativo no canto superior direito */
 header::before {
     content: '';
     position: absolute;
@@ -105,9 +93,9 @@ header::before {
 .header-conteudo {
     position: relative;
     max-width: 600px;
+    transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-/* Tag "Disponível para aprender" */
 .header-tag {
     display: inline-flex;
     align-items: center;
@@ -122,7 +110,6 @@ header::before {
     margin-bottom: 1.5rem;
 }
 
-/* Bolinha pulsando na tag */
 .bolinha {
     width: 7px;
     height: 7px;
@@ -132,18 +119,27 @@ header::before {
 }
 
 @keyframes pulsar {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.4;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
 }
 
-/* Nome em destaque */
+.animate-hidden {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: opacity, transform;
+}
+
+.img-profile.animate-hidden {
+    opacity: 0;
+    transform: translateX(40px);
+    will-change: opacity, transform;
+}
+
+.animate-visible {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
 .header-nome {
     font-size: clamp(2.5rem, 7vw, 4.5rem);
     font-weight: 800;
@@ -153,7 +149,6 @@ header::before {
     color: var(--cor-texto);
 }
 
-/* Área/função em roxo */
 .header-area {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     font-weight: 600;
@@ -161,7 +156,6 @@ header::before {
     margin-bottom: 1.2rem;
 }
 
-/* Descrição curta */
 .header-descricao {
     color: var(--cor-texto-fraco);
     font-size: 1rem;
@@ -169,7 +163,6 @@ header::before {
     margin-bottom: 2rem;
 }
 
-/* Botões do header */
 .header-botoes {
     display: flex;
     gap: 0.85rem;
@@ -214,27 +207,23 @@ header::before {
 }
 
 .img-profile {
-    max-width: 380px;  
-    flex-shrink: 0;
+    max-width: 350px;
+    width: 100%;
+    flex-shrink: 1;
+    transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
 .img-profile img {
     width: 100%;
-    height: 340px;     
+    height: 340px;
     object-fit: cover;
     border-radius: 50px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
-
-
-/* =============================================
-      SEÇÃO 1 — HABILIDADES
-   ============================================= */
-
-/* Grupo de habilidades (Front-end, Ferramentas etc) */
 
 .grupo-habilidades {
     margin-bottom: 2rem;
+    transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
 .grupo-titulo {
@@ -247,7 +236,6 @@ header::before {
     text-align: center;
 }
 
-/* Container das chips */
 .chips {
     display: flex;
     flex-wrap: wrap;
@@ -255,7 +243,6 @@ header::before {
     gap: 0.55rem;
 }
 
-/* Chip individual de cada tecnologia */
 .chip {
     display: flex;
     align-items: center;
@@ -274,7 +261,6 @@ header::before {
     transform: translateY(-2px);
 }
 
-/* Bolinha colorida na frente da chip */
 .chip-cor {
     width: 7px;
     height: 7px;
@@ -282,44 +268,20 @@ header::before {
     flex-shrink: 0;
 }
 
-.laranja {
-    background-color: #f97316;
-}
-
-.azul {
-    background-color: #60a5fa;
-}
-
-.amarelo {
-    background-color: #facc15;
-}
-
-.roxo {
-    background-color: var(--cor-destaque);
-}
-
-.verde {
-    background-color: #4ade80;
-}
-
-.cinza {
-    background-color: #94a3b8;
-}
-
-/* =============================================
-      SEÇÃO 2 — PROJETOS
-   ============================================= */
-
-/* Grade de cards de projeto */
+.laranja { background-color: #f97316; }
+.azul { background-color: #60a5fa; }
+.amarelo { background-color: #facc15; }
+.roxo { background-color: var(--cor-destaque); }
+.verde { background-color: #4ade80; }
+.cinza { background-color: #94a3b8; }
 
 .grade-projetos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
     gap: 1.2rem;
-    align-items: center;
+    align-items: start;
 }
 
-/* Card de projeto */
 .card-projeto {
     background-color: var(--cor-card);
     border: 1px solid var(--cor-borda);
@@ -327,7 +289,7 @@ header::before {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.2s;
 }
 
 .card-projeto:hover {
@@ -335,7 +297,6 @@ header::before {
     border-color: rgba(108, 99, 255, 0.4);
 }
 
-/* Área da imagem/screenshot do projeto */
 .projeto-imagem {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -355,7 +316,6 @@ header::before {
     display: block;
 }
 
-/* Conteúdo do card */
 .projeto-corpo {
     padding: 1.3rem;
     display: flex;
@@ -363,7 +323,6 @@ header::before {
     flex: 1;
 }
 
-/* Tipo do projeto (Site, Exercício etc) */
 .projeto-tipo {
     font-size: 0.68rem;
     font-weight: 700;
@@ -386,7 +345,6 @@ header::before {
     margin-bottom: 1rem;
 }
 
-/* Tags de tecnologia usadas */
 .projeto-tags {
     display: flex;
     flex-wrap: wrap;
@@ -403,7 +361,6 @@ header::before {
     border-radius: 6px;
 }
 
-/* Links do projeto */
 .projeto-links {
     display: flex;
     gap: 0.55rem;
@@ -428,18 +385,12 @@ header::before {
     border-color: var(--cor-destaque);
 }
 
-/* =============================================
-      SEÇÃO 3 — FORMAÇÃO E CURSOS
-   ============================================= */
-
-/* Grade de 2 colunas para formação e cursos */
 .grade-formacao {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
 }
 
-/* Título de cada coluna */
 .coluna-titulo {
     display: flex;
     align-items: center;
@@ -462,20 +413,18 @@ header::before {
     font-size: 0.85rem;
 }
 
-/* Lista de itens da formação */
 .lista-formacao {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-/* Card de formação/curso */
 .item-formacao {
     background-color: var(--cor-card);
     border: 1px solid var(--cor-borda);
     border-radius: var(--raio);
     padding: 1rem 1.1rem;
-    transition: border-color 0.2s, transform 0.2s;
+    transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.2s;
 }
 
 .item-formacao:hover {
@@ -496,7 +445,6 @@ header::before {
     font-weight: 700;
 }
 
-/* Badge com o período/ano */
 .item-periodo {
     font-size: 0.68rem;
     font-weight: 600;
@@ -520,9 +468,6 @@ header::before {
     line-height: 1.6;
 }
 
-/* =============================================
-      FOOTER — contato
-   ============================================= */
 footer {
     background-color: var(--cor-card);
     border-top: 1px solid var(--cor-borda);
@@ -551,7 +496,6 @@ footer {
     margin-top: 0.2rem;
 }
 
-/* Links de contato no footer */
 .footer-contatos {
     display: flex;
     flex-direction: column;
@@ -617,18 +561,33 @@ footer {
     color: var(--cor-destaque);
 }
 
-/* =============================================
-      RESPONSIVO — celular
-   ============================================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        padding: 3rem 5vw;
+        min-height: auto;
+    }
+
+    .img-profile {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .img-profile img {
+        height: 260px;
+        border-radius: 24px;
+    }
+}
+
 @media (max-width: 700px) {
     section {
         padding: 3.5rem 5vw;
     }
 
-    header {
-        padding: 4rem 5vw;
-        min-height: auto;
-        padding-top: 5rem;
+    .linha {
+        width: 90%;
     }
 
     .grade-formacao {
@@ -638,5 +597,15 @@ footer {
     .footer-topo {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .grade-projetos {
+        grid-template-columns: 1fr;
+    }
+
+    .header-nome {
+        font-size: 2.2rem;
     }
 }

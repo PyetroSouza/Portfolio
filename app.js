@@ -1,24 +1,24 @@
 'use strict'
 
 const elementosAnimados = document.querySelectorAll(
-    '.grupo-habilidades, .card-projeto, .item-formacao, .header-conteudo'
-);
+    '.grupo-habilidades, .card-projeto, .item-formacao, .header-conteudo, .img-profile'
+)
 
-// Cria um "observador" que detecta quando o elemento entra na tela
+const prefereReducao = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const observador = new IntersectionObserver(function (entradas) {
     entradas.forEach(function (entrada) {
         if (entrada.isIntersecting) {
-            // Adiciona a classe que torna o elemento visível
-            entrada.target.style.opacity = '1';
-            entrada.target.style.transform = 'translateY(0)';
+            entrada.target.classList.remove('animate-hidden');
+            entrada.target.classList.add('animate-visible');
+            observador.unobserve(entrada.target);
         }
     });
 }, { threshold: 0.1 });
 
-// Aplica o estilo inicial (invisível) e começa a observar cada elemento
 elementosAnimados.forEach(function (elemento) {
-    elemento.style.opacity = '0';
-    elemento.style.transform = 'translateY(20px)';
-    elemento.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    if (!prefereReducao) {
+        elemento.classList.add('animate-hidden');
+    }
     observador.observe(elemento);
 });
